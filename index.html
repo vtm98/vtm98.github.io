@@ -1,0 +1,674 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VTM | הכוונה פיננסית, השקעות ומסחר</title>
+  <meta name="description" content="VTM — הכוונה פיננסית וליווי מלא בהשקעות ומסחר: מניות, קריפטו, סחורות, חוזים עתידיים, אופציות וניהול פיננסי נכון." />
+
+  <style>
+    :root{
+      --bg:#070a0e;
+      --bg2:#0b0f14;
+      --text:#eef2f7;
+      --muted:rgba(238,242,247,.72);
+      --line:rgba(255,255,255,.12);
+
+      --gold:#c9a86a;
+      --gold2:#9f7f45;
+
+      --card:rgba(12,16,22,.62);
+      --card2:rgba(12,16,22,.42);
+      --shadow:0 24px 80px rgba(0,0,0,.55);
+
+      --r:18px;
+      --max:1180px;
+
+      --h1:clamp(34px,4.8vw,66px);
+      --h2:clamp(20px,2.0vw,28px);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans Hebrew", "Heebo", sans-serif;
+      background:
+        radial-gradient(1100px 640px at 10% 10%, rgba(201,168,106,.10), transparent 55%),
+        radial-gradient(900px 560px at 85% 20%, rgba(201,168,106,.07), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+      line-height:1.85;
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max);margin:0 auto;padding:0 18px}
+
+    /* Top bar */
+    .top{
+      position: sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,14,.72);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .top-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding: 12px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 230px;
+    }
+    .logo{
+      width:44px;height:44px;border-radius:14px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 14px 48px rgba(0,0,0,.35);
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      font-weight:900;
+      letter-spacing:.4px;
+    }
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .brand .txt{display:flex;flex-direction:column;line-height:1.12}
+    .brand .txt b{font-size:14px;letter-spacing:.2px}
+    .brand .txt span{font-size:12px;color:var(--muted)}
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      align-items:center;
+    }
+    .chip{
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(238,242,247,.88);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    .chip:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      font-weight: 800;
+      cursor:pointer;
+      white-space: nowrap;
+      transition: transform .12s ease, filter .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.20);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(201,168,106,.95), rgba(159,127,69,.95));
+      color:#070a0e;
+      border-color: rgba(201,168,106,.55);
+    }
+    .btn.ig{
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      border-color: rgba(255,255,255,.18);
+      color:#fff;
+    }
+
+    /* Ticker line */
+    .ticker{
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .ticker-track{
+      display:flex;
+      gap:18px;
+      padding: 9px 0;
+      white-space: nowrap;
+      animation: slide 28s linear infinite;
+    }
+    @keyframes slide{
+      from{ transform: translateX(100%); }
+      to{ transform: translateX(-120%); }
+    }
+    .t-item{
+      display:flex; align-items:center; gap:10px;
+      font-size: 12.5px;
+      color: rgba(238,242,247,.86);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.20);
+    }
+    .dot{width:10px;height:10px;border-radius:999px;background: rgba(201,168,106,.9);box-shadow: 0 0 0 3px rgba(201,168,106,.18)}
+    .sep{opacity:.55}
+    .chg.up{color:#66f2b7}
+    .chg.down{color:#ff6b6b}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      min-height: calc(100vh - 110px);
+      display:flex;
+      align-items: stretch;
+    }
+    .hero-bg{
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(7,10,14,.92) 0%, rgba(7,10,14,.62) 55%, rgba(7,10,14,.92) 100%),
+        linear-gradient(180deg, rgba(7,10,14,.45), rgba(7,10,14,.88)),
+        url("assets/hero.jpg?v=1");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.03) contrast(1.03);
+    }
+    .hero-inner{position:relative;width:100%;padding: 34px 0}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 10px;
+    }
+
+    .panel{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(12,16,22,.62), rgba(12,16,22,.38));
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    h1{margin:0 0 10px 0;font-size:var(--h1);line-height:1.05;letter-spacing:.2px}
+    h2{margin:0;font-size:var(--h2);letter-spacing:.2px}
+    .gold{color:var(--gold)}
+    .lead{margin:0;color:var(--muted);font-size:16px;line-height:1.95;max-width: 64ch}
+    .note{margin-top:10px;font-size:12.5px;color: rgba(238,242,247,.62)}
+
+    .pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;
+      font-size: 12.5px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(238,242,247,.88);
+      white-space: nowrap;
+    }
+
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .mini{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+    }
+    .mini b{display:block;margin-bottom:6px;font-size:15px}
+    .mini span{color:var(--muted);font-size:13.5px;line-height:1.8}
+
+    .checks{display:flex;flex-direction:column;gap:12px}
+    .check{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .mark{
+      width: 20px; height: 20px;
+      border-radius: 6px;
+      background: rgba(102,242,183,.14);
+      border: 1px solid rgba(102,242,183,.35);
+      display:flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      margin-top: 2px;
+      font-weight:900;
+    }
+    .check b{display:block;margin-bottom:4px;font-size:14px}
+    .check span{color:var(--muted);font-size:13.5px;line-height:1.8}
+
+    /* Sections */
+    section{padding: 56px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom: 18px}
+    .sub{margin:0;color: var(--muted);font-size: 14px;max-width: 72ch;line-height:1.7}
+
+    .split{display:grid;grid-template-columns: 1fr 1fr;gap: 18px;align-items:start}
+    .steps{margin:0;padding-right: 18px;line-height:1.9;color: rgba(238,242,247,.86)}
+    .steps li{margin: 10px 0}
+
+    /* Products / Markets */
+    .markets{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 12px;
+    }
+    .market{
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+      min-height: 120px;
+    }
+    .market b{display:block;margin-bottom:6px;font-size:15px}
+    .market span{color: var(--muted);font-size: 13.5px;line-height:1.8}
+
+    /* Contact */
+    .contact{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+      font-family: inherit;
+      font-size: 14.5px;
+    }
+    textarea{min-height: 120px; resize: vertical;}
+    input::placeholder, textarea::placeholder{color: rgba(238,242,247,.55);}
+    .small{font-size:12.5px;color: rgba(238,242,247,.62);line-height:1.8}
+
+    footer{
+      padding: 22px 0 32px;
+      text-align:center;
+      color: rgba(238,242,247,.60);
+      font-size: 12.5px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.18);
+    }
+
+    /* Floating buttons */
+    .float{
+      position: fixed;
+      left: 14px;
+      bottom: 14px;
+      z-index: 70;
+      display:flex;
+      flex-direction: column;
+      gap:10px;
+    }
+    .fab{
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 900;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.25);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      backdrop-filter: blur(12px);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .fab:hover{ transform: translateY(-2px); filter: brightness(1.05); }
+    .fab.wa{
+      background: linear-gradient(135deg, rgba(201,168,106,.95), rgba(159,127,69,.95));
+      color:#070a0e;
+      border-color: rgba(201,168,106,.55);
+    }
+    .fab.ig{
+      background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+      color:#fff;
+      border-color: rgba(255,255,255,.18);
+    }
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .split{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .markets{grid-template-columns:1fr}
+      .nav{display:none}
+    }
+    @media (max-width: 620px){
+      .actions{display:none}
+      section{padding: 42px 0}
+      .btn{width:100%}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top" id="top">
+    <div class="container">
+      <div class="top-row">
+
+        <div class="brand" aria-label="VTM">
+          <div class="logo" aria-hidden="true">
+            <!-- החלף את שם הקובץ אם צריך -->
+            <img src="assets/1logo.jpeg" alt="VTM"
+                 onerror="this.style.display='none'; this.parentElement.textContent='VTM';" />
+          </div>
+          <div class="txt">
+            <b>VTM</b>
+            <span>הכוונה פיננסית • השקעות • מסחר</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="ניווט">
+          <a class="chip" href="#about">עלינו</a>
+          <a class="chip" href="#services">מה עושים</a>
+          <a class="chip" href="#markets">מוצרים</a>
+          <a class="chip" href="#process">איך זה עובד</a>
+          <a class="chip" href="#contact">יצירת קשר</a>
+        </nav>
+
+        <div class="actions">
+          <a class="btn ig" target="_blank" rel="noopener" href="https://instagram.com/vtm_on">אינסטגרם</a>
+          <a class="btn primary" href="#contact">שיחת היכרות</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker" aria-label="שורה רצה - שווקים">
+      <div class="container">
+        <div class="ticker-track">
+          <div class="t-item"><span class="dot"></span><span>SPX</span><span class="sep">•</span><span>Scenario-based</span><span class="chg up">+Process</span></div>
+          <div class="t-item"><span class="dot"></span><span>BTC</span><span class="sep">•</span><span>Risk first</span><span class="chg down">No hype</span></div>
+          <div class="t-item"><span class="dot"></span><span>GOLD</span><span class="sep">•</span><span>Structure</span><span class="chg up">Consistency</span></div>
+          <div class="t-item"><span class="dot"></span><span>FX</span><span class="sep">•</span><span>Rules</span><span class="chg up">Execution</span></div>
+          <div class="t-item"><span class="dot"></span><span>OIL</span><span class="sep">•</span><span>Plan</span><span class="chg down">Emotionless</span></div>
+          <div class="t-item"><span class="dot"></span><span>OPTIONS</span><span class="sep">•</span><span>Manage risk</span><span class="chg up">Professional</span></div>
+
+          <!-- repeat -->
+          <div class="t-item"><span class="dot"></span><span>SPX</span><span class="sep">•</span><span>Scenario-based</span><span class="chg up">+Process</span></div>
+          <div class="t-item"><span class="dot"></span><span>BTC</span><span class="sep">•</span><span>Risk first</span><span class="chg down">No hype</span></div>
+          <div class="t-item"><span class="dot"></span><span>GOLD</span><span class="sep">•</span><span>Structure</span><span class="chg up">Consistency</span></div>
+          <div class="t-item"><span class="dot"></span><span>FX</span><span class="sep">•</span><span>Rules</span><span class="chg up">Execution</span></div>
+          <div class="t-item"><span class="dot"></span><span>OIL</span><span class="sep">•</span><span>Plan</span><span class="chg down">Emotionless</span></div>
+          <div class="t-item"><span class="dot"></span><span>OPTIONS</span><span class="sep">•</span><span>Manage risk</span><span class="chg up">Professional</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero" id="about">
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="container">
+        <div class="hero-grid">
+
+          <div class="panel">
+            <h1>VTM — <span class="gold">הכוונה פיננסית</span><br/>וליווי מלא בשוק ההון.</h1>
+
+            <p class="lead">
+              אנחנו מלווים אותך בצורה מסודרת ומקצועית: מהתנהלות פיננסית נכונה בחיים ועד בניית שיטה
+              להשקעות ומסחר בבורסה. המטרה היא תהליך — לא ניחושים: להבין למה נכנסים, איך מנהלים סיכון,
+              ואיך משפרים עקביות לאורך זמן.
+            </p>
+
+            <div class="pill-row">
+              <div class="pill">📌 שיטה ותהליך</div>
+              <div class="pill">🛡️ ניהול סיכונים</div>
+              <div class="pill">📊 ניתוח שוק</div>
+              <div class="pill">💼 התנהלות פיננסית</div>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn primary" href="#contact">להצטרפות / שיחת היכרות</a>
+              <a class="btn ig" target="_blank" rel="noopener" href="https://instagram.com/vtm_on">לאינסטגרם</a>
+            </div>
+
+            <div class="note">
+              *המידע באתר הוא מידע כללי בלבד ואינו ייעוץ פיננסי/השקעות אישי.
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="checks">
+              <div class="check">
+                <div class="mark">✓</div>
+                <div>
+                  <b>ליווי מלא — מהבסיס ועד ביצוע</b>
+                  <span>מבנה שוק, כללים, תרחישים, ושגרה שבועית שמייצרת סדר.</span>
+                </div>
+              </div>
+
+              <div class="check">
+                <div class="mark">✓</div>
+                <div>
+                  <b>עובדים על כלל המוצרים</b>
+                  <span>מניות, קריפטו, מדדים, סחורות, חוזים עתידיים ואופציות.</span>
+                </div>
+              </div>
+
+              <div class="check">
+                <div class="mark">✓</div>
+                <div>
+                  <b>התנהלות פיננסית בחיים</b>
+                  <span>תכנון, הרגלים, ניהול תקציב והחלטות נכונות לטווח ארוך.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div class="mini">
+                <b>מסלול למתחילים</b>
+                <span>יסודות ברורים, מושגים, כללים ושגרה שמתחילים איתה נכון.</span>
+              </div>
+              <div class="mini">
+                <b>מסלול למתקדמים</b>
+                <span>דיוק כניסות/יציאות, ניהול פוזיציה ושיפור עקביות.</span>
+              </div>
+              <div class="mini">
+                <b>ניהול סיכונים</b>
+                <span>יחס סיכון/סיכוי, סטופ, גודל פוזיציה ומשמעת.</span>
+              </div>
+              <div class="mini">
+                <b>ליווי קבוע</b>
+                <span>מענה, תהליך עבודה, ותיקון טעויות בזמן אמת.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>מה אנחנו עושים ב-VTM</h2>
+        <p class="sub">הכוונה פיננסית אמיתית + לימוד שיטתי לשוק ההון — כדי שתעבוד בצורה נקייה ומדויקת.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h2 style="margin-bottom:10px">הכוונה פיננסית אישית</h2>
+          <p class="sub">
+            בניית תשתית בחיים: סדר פיננסי, תכנון, הרגלים נכונים, ניהול תקציב וחשיבה לטווח ארוך.
+          </p>
+          <ol class="steps">
+            <li>מיפוי מצב קיים + מטרות</li>
+            <li>הצבת כללים והרגלים פיננסיים</li>
+            <li>תוכנית עבודה חודשית פשוטה</li>
+            <li>מעקב ושיפור לאורך זמן</li>
+          </ol>
+        </div>
+
+        <div class="panel">
+          <h2 style="margin-bottom:10px">לימוד השקעות ומסחר</h2>
+          <p class="sub">
+            לומדים שוק, בונים אסטרטגיה, מחדדים תזמון ומנהלים סיכון בצורה מקצועית — עם שיטה.
+          </p>
+          <ol class="steps">
+            <li>קריאת גרפים ומבנה שוק</li>
+            <li>סינון עסקאות וכללי כניסה/יציאה</li>
+            <li>ניהול פוזיציה (סטופ, יעדים, הגדלה/הקטנה)</li>
+            <li>ריוויו ביצועים ושיפור עקביות</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETS -->
+  <section id="markets">
+    <div class="container">
+      <div class="section-head">
+        <h2>על אילו מוצרים עובדים?</h2>
+        <p class="sub">כיסוי מלא — כדי שתבין את השוק ולא תהיה תלוי ב”טיפים”.</p>
+      </div>
+
+      <div class="markets">
+        <div class="market">
+          <b>מניות (Stocks)</b>
+          <span>ניתוח חברות, סקטורים, דוחות, מבנה שוק ותרחישים.</span>
+        </div>
+        <div class="market">
+          <b>קריפטו (Crypto)</b>
+          <span>מטבעות מובילים, סייקלים, ניהול סיכונים והתנהלות חכמה.</span>
+        </div>
+        <div class="market">
+          <b>סחורות (Commodities)</b>
+          <span>זהב, נפט ועוד — הבנת השפעות מאקרו ותזמון.</span>
+        </div>
+        <div class="market">
+          <b>חוזים עתידיים (Futures)</b>
+          <span>כללים, מינוף, ניהול פוזיציה וסיכון.</span>
+        </div>
+        <div class="market">
+          <b>אופציות (Options)</b>
+          <span>הבנת בסיס, שימוש נכון, והימנעות מסיכונים מיותרים.</span>
+        </div>
+        <div class="market">
+          <b>התנהלות פיננסית</b>
+          <span>תקציב, הרגלים, תכנון, יעדים ובניית יציבות.</span>
+        </div>
+      </div>
+
+      <div class="note" style="margin-top:12px">
+        *נלמד יחד גם איך לבחור מה מתאים לך בהתאם לאופי, זמן פנוי ורמת סיכון.
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>איך זה עובד בפועל</h2>
+        <p class="sub">תהליך פשוט וברור — כדי להפוך ידע לביצוע.</p>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <ol class="steps">
+            <li><b>שיחת היכרות</b> — להבין מטרות, ניסיון וסגנון.</li>
+            <li><b>בניית מסלול</b> — הכוונה פיננסית + השקעות/מסחר בהתאם.</li>
+            <li><b>יישום</b> — כללים, תרחישים, ניהול סיכונים ושגרה.</li>
+            <li><b>שיפור עקביות</b> — ריוויו, תיקון טעויות ובנייה לטווח ארוך.</li>
+          </ol>
+        </div>
+
+        <div class="panel" id="contact">
+          <h2 style="margin-bottom:10px">יצירת קשר</h2>
+          <p class="sub">השאר פרטים ונשלח לך הודעה לוואטסאפ — או פנה ישירות.</p>
+
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+            <a class="btn primary" target="_blank" rel="noopener"
+               href="https://wa.me/972535758434?text=%D7%94%D7%99%D7%99%20VTM%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.%20%D7%A9%D7%9D%3A%20____%20%D7%A0%D7%99%D7%A1%D7%99%D7%95%D7%9F%3A%20____%20%D7%9E%D7%98%D7%A8%D7%94%3A%20____">
+              וואטסאפ ישיר
+            </a>
+            <a class="btn ig" target="_blank" rel="noopener" href="https://instagram.com/vtm_on">אינסטגרם</a>
+            <a class="btn" href="tel:+972535758434">שיחה</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <form id="leadForm">
+              <input id="name" type="text" placeholder="שם מלא" required />
+              <input id="phone" type="tel" placeholder="טלפון" required />
+              <textarea id="msg" placeholder="מה המטרה שלך? (הכוונה פיננסית / לימוד השקעות / מסחר / שילוב)" required></textarea>
+              <button class="btn primary" type="submit">שליחה לוואטסאפ</button>
+            </form>
+
+            <p class="small" style="margin-top:10px">
+              *אין שרת — השליחה פותחת וואטסאפ עם הודעה מוכנה. <br/>
+              ⚠️ המידע באתר הוא כללי בלבד ואינו ייעוץ פיננסי/השקעות אישי.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="y"></span> VTM — כל הזכויות שמורות.
+  </footer>
+
+  <!-- Floating buttons -->
+  <div class="float" aria-label="כפתורי קשר מהירים">
+    <a class="fab wa" target="_blank" rel="noopener"
+       href="https://wa.me/972535758434?text=%D7%94%D7%99%D7%99%20VTM%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%A9%D7%99%D7%97%D7%AA%20%D7%94%D7%99%D7%9B%D7%A8%D7%95%D7%AA.%20%D7%A9%D7%9D%3A%20____">WA</a>
+    <a class="fab ig" target="_blank" rel="noopener" href="https://instagram.com/vtm_on">IG</a>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    // WhatsApp form (no backend)
+    document.getElementById("leadForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const msg = document.getElementById("msg").value.trim();
+      const text = encodeURIComponent(
+        `היי VTM, אני רוצה שיחת היכרות.\nשם: ${name}\nטלפון: ${phone}\nמטרה: ${msg}`
+      );
+      window.open(`https://wa.me/972535758434?text=${text}`, "_blank");
+    });
+  </script>
+
+</body>
+</html>
